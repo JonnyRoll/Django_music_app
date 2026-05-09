@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Genre</title>
+</head>
+<body>
+<h1>Creating new Genres</h1>
+
+
+<!-- input allows the client to insert (lol) information -->
+<!-- form will group everything! -->
+<!--action will direct the form to the specified url -->
+<!-- method="POST", allows use to differential between two functions in a page, asking for the webpage is get (original)
+ by calling method post, the webpage creates somthing-->
+<form action="/genres/create/" method="POST">
+    {% csrf_token %} <!-- Essential for security -->
+    <p>Genre Name</p>
+    <input type="text" placeholder="genre name" required name="name">
+    <p>Creation Date</p>
+    <input type="date" required name="creation_date">
+    <p>Description </p>
+    <textarea placeholder="genre description" name='description'> </textarea>
+    <!-- need to have th submit button to commit the form, takes everything inside of form and sed it to the server-->
+    <input type="submit">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genre</title>
+</head>
+
+<body>
+<h1> All Music Genres </h1>
+<p> click here to <a href='/genres/create/'> creat </a> to make a new genre!</p>
+<ul>
+    {% for genre in genres_list %}
+    <li> <a href='/genres/{{genre.id}}/'> {{genre.name}} </a> </li> <!-- list item in the ul *list container*,  insert a value of a variable-->
+    {% endfor %}
+</ul>
+
+</body>
+</html>

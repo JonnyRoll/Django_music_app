@@ -34,6 +34,7 @@ def genre(request, pk): # genre_id is the pk id!
     genre = Genre.objects.get(id=pk)
     return render(request, 'genre.html', {'genre':genre})
 
+# this is for the tacking page!
 def add_track(request):
     if request.method == 'GET': # this is when we first click on the web link
         all_genres = Genre.objects.all() # gets all the objects (in a list) ! .all() will be a list!

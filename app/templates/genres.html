@@ -11,7 +11,7 @@
 
 <ul>
     {% for genre in genres_list %}
-    <li> <a href='/genres/{{genre.id}}/'> {{genre.name}} </a> </li> <!-- list item in the ul *list container*,  insert a value of a variable-->
+    <li> <a href='/genres/{{genre.pk}}/'> {{genre.name}} </a> </li> <!-- list item in the ul *list container*,  insert a value of a variable-->
     {% endfor %}
 </ul>
 

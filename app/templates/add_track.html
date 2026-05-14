@@ -12,18 +12,25 @@
     <input type="text" required placeholder="EX: God Damn" id="name" name="song_name">
     <p><br></p>
     <label for="artist">Artist</label>
-    <input type="text" required placeholder="Machine Gun Kelly" id="artist" name="artist">
+    <select required id="artist" name="artist">
+        <option value = ""> Select a artist</option>
+        {% for artist in list_of_artists %}
+            <option value="{{artist.name}}">{{artist.name}}</option>
+        {% endfor %}
+    </select>
     <!-- This will give us a drop-down list!-->
     <p><br></p>
     <label for="genre">Genre Type</label>
     <select name="genre_type" required id="genre">
-        <option value="">Select an option</option> <!-- value is the data that gets sent to the server once submitted -->
+        <option value="">Select a genre</option> <!-- value is the data that gets sent to the server once submitted -->
         <!-- now we have to use ginga syntax (this is how you make a for loop-->
         {% for all_genres in list_of_genres %}
         <option value="{{all_genres.name}}">{{all_genres.name}}</option>
         {% endfor %}
     </select>
     <p><br></p>
+    <label for="creation_date">Date of Song Creation</label>
+        <input type="date" name="creation" id="creation_date" required>
     <button type="submit">Post Song</button>
 
 </form>

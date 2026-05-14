@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect # redirects me to the passed url
-from .models import Genre
+from .models import Genre, Artist
 # !!!!!! request must always be the first argument !!!!!!!
-from app.models import Genre, Artist # importing the two tables we need
+from app.models import Genre, Song # importing the two tables we need
 
 
 # Create your views here.
@@ -37,20 +37,45 @@ def genre(request, pk): # genre_id is the pk id!
 def add_track(request):
     if request.method == 'GET': # this is when we first click on the web link
         all_genres = Genre.objects.all() # gets all the objects (in a list) ! .all() will be a list!
-        return render(request, 'add_track.html', {'list_of_genres': all_genres})
+        all_artist =Artist.objects.all() # is a list of all artists!
+        return render(request, 'add_track.html', {'list_of_genres': all_genres , 'list_of_artists': all_artist})
     elif request.method == 'POST':
         # this will return the input the client entered
         song_name = request.POST.get('song_name')
         artist_name = request.POST.get('artist')
         # this gets the name of the genre object we want
         genre_name = request.POST.get('genre_type')
+        #creation date
+        creation_date = request.POST.get('creation')
         # this finds the particular genre in question in the genre table! (not just the name)
         the_genre = Genre.objects.get(name=genre_name)
         # have to create an instance of the song and put in on the database
-        Artist.objects.create(
+        Song.objects.create(
             song_title=song_name,
             artis_name=artist_name,
-            genre_type=the_genre
+            genre_type=the_genre,
+            creation_date=creation_date
         )
         return HttpResponseRedirect('/genres/')
+
+# This will be the function that adds an artist to the artist table!
+def add_artist(request):
+    # when we click on the artist page
+    if request.method == 'GET':
+        return render(request, 'add_artist.html')
+    elif request.method == 'POST':
+        artist_name = request.POST.get('name') # the name of the instance in html
+        artist_date_of_birth = request.POST.get('birth_day')
+        monthly_listers =  request.POST.get('monthly_listeners')
+        biography = request.POST.get('bio')
+        start_of_career = request.POST.get('started_making_music')
+        # now creating the artist!
+        Artist.objects.create(
+            name=artist_name,
+            birth_day=artist_date_of_birth,
+            monthly_listeners=monthly_listers,
+            bio=biography,
+            started_making_music=start_of_career
+        )
+        return HttpResponseRedirect('/') # have to put the slash so you get redirected to the main page!
 

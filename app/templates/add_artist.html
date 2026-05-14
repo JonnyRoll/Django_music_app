@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add_artist</title>
+</head>
+<body>
+<h1>Add Artist</h1>
+<form action="/add_artist/" method="post">
+    {% csrf_token %} <!-- Essential for security -->
+    <label for='artist_name'>name</label> <!-- id and for need to match -->
+        <input type="text" name="name" required id="artist_name" placeholder="Ex: Micheal Jackson">
+    <p><br></p>
+    <label for="date_of_birth">Date of Birth</label>
+        <input type="date" name="birth_day" required id="date_of_birth">
+    <p><br></p>
+    <label for="listeners">Monthly Listeners (in millions)</label>
+        <input type="number" step="1" required id="listeners" name="monthly_listeners"> <!-- step indicates which numbers are valid, here its 1, 2, 3, 4, 5... -->
+    <p><br></p>
+    <label for="bio">Artist biography</label>
+        <textarea name="bio" placeholder="give the artist description here" id="bio"></textarea>
+    <p><br></p>
+    <label for="start">Beginning of Career</label>
+        <input type="date" required name="started_making_music" id="start">
+    <p><br></p>
+    <button type="submit">Create Artist</button>
+</form>
+
+
+</body>
+</html>

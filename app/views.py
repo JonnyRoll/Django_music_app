@@ -31,7 +31,7 @@ def genres(request):
     return render(request, 'genres.html', {'genres_list': genres})
 
 def genre(request, pk): # genre_id is the pk id!
-    genre = Genre.objects.get(id=pk)
+    genre = Genre.objects.get(name=pk)
     return render(request, 'genre.html', {'genre':genre})
 
 def add_track(request):

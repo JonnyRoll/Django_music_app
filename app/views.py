@@ -82,7 +82,7 @@ def add_artist(request):
         return HttpResponseRedirect('/') # have to put the slash so you get redirected to the main page!
 
 def delete_song(request, pk): # this function deletes the song which we pass to it!
-    the_song = Song.objects.get(song_title=pk)
+    the_song = Song.objects.get(song_title=pk) # with this we can determine exactly which song we want to delete (as the song name is unique)
     the_genre = the_song.genre_type
     the_song.delete()
     return HttpResponseRedirect(f'/genres/{the_genre.name}/') #return back to genre page NOTE since we are not in HTML (we don't use jinja syntax) we use java f'' syntax!

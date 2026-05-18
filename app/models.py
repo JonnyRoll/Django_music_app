@@ -9,7 +9,7 @@ class Genre(models.Model):
 # creating a table for the songs
 class Song(models.Model):
     song_title = models.CharField(max_length= 50, null= False, unique= True, primary_key=True) # the song name is the primary key
-    artis_name = models.CharField(max_length= 50, null= False, unique= True)
+    artis_name = models.CharField(max_length= 50, null= False) # this cannot be unique lol (or else every artist would only have one song!
     genre_type = models.ForeignKey(Genre, on_delete=models.CASCADE) # we will use the pk from genre(the genre name)
     #Cascade means that if the key in genre is deleted then all objects with said key will also be deleted
     creation_date = models.DateField(auto_now_add= False, null= False)

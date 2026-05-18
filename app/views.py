@@ -81,10 +81,20 @@ def add_artist(request):
         )
         return HttpResponseRedirect('/') # have to put the slash so you get redirected to the main page!
 
+def delete_song(request, pk): # this function deletes the song which we pass to it!
+    the_song = Song.objects.get(song_title=pk)
+    the_genre = the_song.genre_type
+    the_song.delete()
+    return HttpResponseRedirect(f'/genres/{the_genre.name}/') #return back to genre page NOTE since we are not in HTML (we don't use jinja syntax) we use java f'' syntax!
+
 def song_page(request, pk): # since in our url's page we have a <str:pk> we need to call pk in our function definition!
         the_song = Song.objects.get(song_title = pk)
         the_genre = the_song.genre_type # passes the object which related to the genre from the tabel (it's a forgen key)
         return render(request, 'song.html', {'song': the_song, 'the_genre':the_genre})
+
+def artist_page(request, pk):
+    the_artist = Artist.objects.get(name = pk)
+    return render(request, 'artist.html', {'artist':the_artist})
 
 
 

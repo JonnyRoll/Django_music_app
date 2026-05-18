@@ -14,7 +14,7 @@
 <h3>Top {{genre.name}} Tracks </h3>
 <ul>
 {% for songs in music_of_the_genre %}
-    <li> <a href = '/song/{{songs.song_title}}/'>{{songs.song_title}}</a>--- {{songs.artis_name}}</li>
+    <li> <a href = '/song/{{songs.song_title}}/'>{{songs.song_title}}</a>--- <a href ='/{{songs.artis_name}}/'>{{songs.artis_name}}</a> </li>
 {% endfor %}
 </ul>
 

@@ -32,7 +32,8 @@ def genres(request):
 
 def genre(request, pk): # genre_id is the pk id!
     genre = Genre.objects.get(name=pk)
-    return render(request, 'genre.html', {'genre':genre})
+    all_genre_music = Song.objects.filter(genre_type = genre) # the filter function returns a QuerySet (like a list) that filters only the elements that have the correct genre type.
+    return render(request, 'genre.html', {'genre':genre, 'music_of_the_genre':all_genre_music})
 
 # this is for the tacking page!
 def add_track(request):
@@ -79,4 +80,13 @@ def add_artist(request):
             started_making_music=start_of_career
         )
         return HttpResponseRedirect('/') # have to put the slash so you get redirected to the main page!
+
+def song_page(request, pk): # since in our url's page we have a <str:pk> we need to call pk in our function definition!
+        the_song = Song.objects.get(song_title = pk)
+        the_genre = the_song.genre_type # passes the object which related to the genre from the tabel (it's a forgen key)
+        return render(request, 'song.html', {'song': the_song, 'the_genre':the_genre})
+
+
+
+
 
